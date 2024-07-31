@@ -380,3 +380,70 @@ make
 cmake -DNETCDFINCLUDE_DIR=/home/dmcxe/miniconda3/envs/sims/include/ ..
 ```
 
+
+
+
+# SPEC
+
+[The Stepped Pressure Equilibrium Code (SPEC)](https://github.com/PrincetonUniversity/SPEC) 是一款基于 [MRxMHD Model](https://doi.org/10.1063/1.4765691) 的三维磁流体平衡求解程序。
+
+这个文档中的安装教程和官方提供的[安装文档](https://princetonuniversity.github.io/SPEC/md_Compile.html)有所不同，在官方文档中使用`conda`来对安装环境和依赖包进行管理，在这个文档中直接通过Makefile安装SPEC。
+
+### 源码下载
+在终端输入
+```
+git clone https://github.com/PrincetonUniversity/SPEC.git
+```
+
+### 安装所依赖的工具和包
+在终端依次输入
+```
+sudo apt install make
+sudo apt install gfortran
+sudo apt install libopenmpi-dev
+sudo apt install liblapack-dev
+sudo apt install m4
+sudo apt install libfftw3-dev
+sudo apt install libhdf5-dev
+```
+
+### 编译
+```
+cd /path/to/SPEC
+make BUILD_ENV=gfortran_ubuntu
+```
+详细配置可以看SPEC源文件中的`/path/to/SPEC/Makefile`和`/path/to/SPEC/SPECfile`两个文档
+
+### 将SPEC添加到环境变量
+使用`vim ~/.bashrc`打开终端配置文件，在其中加入一行
+```
+export PATH=$PATH:~/Codes/SPEC
+```
+再在终端输入
+```
+source ~/.bashrc
+```
+如果一切顺利的话，此时你在终端输入`which xspec`，屏幕上将出现类似的下述输出
+```
+/home/plasma/Codes/xspec
+```
+
+### 测试
+在终端依次输入下述命令
+```
+mkdir ~/SPEC_runs
+cd ~/SPEC_runs
+cp /path/to/SPEC/InputFiles/TestCases/G3V01L0Fi.001.sp .
+xspec G3V01L0Fi.001.sp
+```
+这个时候将会开始执行SPEC的一个测试算例，等待一会儿，如果屏幕最后几行出现类似的输出
+```
+ending :       0.88 : myid=  0 ; completion ; time=      0.88s =     0.01m =   0.00h =  0.00d ; date= 2022/02/17 ; time= 17:35:33 ; ext = G1V02L0Fi.001                                               
+ending :            : 
+xspech :            :
+xspech :       0.88 : myid=  0 : time=    0.01m =   0.00h =  0.00d ;
+```
+说明SPEC安装成功
+
+### 后处理
+SPEC的后处理工具分别基于`matlab`和`python`的，两者分别在`/path/to/SPEC/Utilities/matlabtools/`和`/path/to/SPEC/Utilities/pythontools/`文件夹下。
