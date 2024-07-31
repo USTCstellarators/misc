@@ -6,3 +6,4 @@ In File "Compilation for Stellarator.md", contains the details for some software
 - FOCUS
 - REGCOIL
 - SIMPLE
+- SPEC
