@@ -396,8 +396,14 @@ git clone https://github.com/PrincetonUniversity/SPEC.git
 ```
 
 ### 安装所依赖的工具和包
+
+有两种方式进行，这里展示依赖apt的安装方法（gfortran_ubuntu）与依赖conda的安装方法（gfortran_conda）
+
+#### Ubuntu
+
 在终端依次输入
-```
+
+```shell
 sudo apt install make
 sudo apt install gfortran
 sudo apt install libopenmpi-dev
@@ -407,12 +413,67 @@ sudo apt install libfftw3-dev
 sudo apt install libhdf5-dev
 ```
 
+#### Conda
+
+首先激活安装环境
+
+```shell
+conda activate <your env name>
+```
+
+在终端依次输入
+
+```shell
+conda install make
+conda install gfortran
+conda install openmpi
+conda install liblapack
+conda install m4
+conda install fftw3
+conda install hdf5
+```
+
 ### 编译
+
+#### Ubuntu
+
 ```
 cd /path/to/SPEC
 make BUILD_ENV=gfortran_ubuntu
 ```
+
 详细配置可以看SPEC源文件中的`/path/to/SPEC/Makefile`和`/path/to/SPEC/SPECfile`两个文档
+
+#### Conda
+
+首先打开`/path/to/SPEC/SPECfile`下，在判断环境部分（例如109行之后）新增conda对应的编译指令。（这里是在M1 Macbook下编译，但Ubuntu上路径命名逻辑一致）。指令中`/Users/dmcxe/miniforge3/envs/simsopt/`需要修改为对应conda环境路径。
+
+```makefile
+ifeq ($(BUILD_ENV),gfortran_conda)
+ # Build on M1 Mac with conda
+ FC=mpif90
+ FLAGS=-fPIC
+ CFLAGS=-fdefault-real-8
+ LINKS=-Wl,-rpath -Wl,/Users/dmcxe/miniforge3/envs/simsopt/lib/lapack -llapack -lblas
+ LIBS=-I/Users/dmcxe/miniforge3/envs/simsopt/include
+ LINKS+=-L/Users/dmcxe/miniforge3/envs/simsopt/lib -lhdf5_fortran -lhdf5 -lpthread -lz -lm
+ LIBS+=-I/Users/dmcxe/miniforge3/envs/simsopt/include
+ LINKS+=-lfftw3
+ RFLAGS=-O2 -ffixed-line-length-none -ffree-line-length-none -fexternal-blas
+ DFLAGS=-g -fbacktrace -fbounds-check -ffree-line-length-none -fexternal-blas -DDEBUG
+endif
+```
+
+之后在目录下编译
+
+```
+cd /path/to/SPEC
+make BUILD_ENV=gfortran_conda
+```
+
+详细配置可以看SPEC源文件中的`/path/to/SPEC/Makefile`和`/path/to/SPEC/SPECfile`两个文档
+
+### 
 
 ### 将SPEC添加到环境变量
 使用`vim ~/.bashrc`打开终端配置文件，在其中加入一行
