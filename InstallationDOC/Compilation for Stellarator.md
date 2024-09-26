@@ -175,7 +175,11 @@ SIMSOPT的编译可以分为两个部分：SIMSOPT框架与VMEC等计算模块�
    ```
 
 5. 进行编译
-
+   这两种不是同时有效的。有时第一种有时第二种。
+     ```
+   pip install .
+   ```
+或
    ```
    python setup.py build_ext
    python setup.py install
@@ -240,6 +244,8 @@ struct hash_base : std::unary_fuction<T std::size_t> {};
 ```c++
 struct hash_base : std::__unary_fuction<T std::size_t> {};
 ```
+### 4. f2py路径错误
+当安装numpy>2.0时，很大概率会使得编译vmec2000时路径指定到usr/bin下。这时需要对numpy降级处理。
 
 
 
