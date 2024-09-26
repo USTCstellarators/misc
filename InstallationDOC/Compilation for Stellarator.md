@@ -369,8 +369,14 @@ conda install compilers gfortran openmpi-mpifort openblas scalapack netcdf-fortr
 conda install cmake 
 ```
 
-之后构建
+对于新版本(至少自2024/09/26之后）,编译方式
+```shell
+cd /path/to/SIMPLE
+make
+```
+将生成包含库与可执行文件simple.x的build文件夹，并且产生了可以在python中使用的pysimple库
 
+对于老版本（大概2023/10），编译方式
 ```shell
 cd /path/to/SIMPLE
 mkdir build; cd build
