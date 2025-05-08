@@ -280,7 +280,7 @@ FOCUS的编译非常容易，因为具有详细的makefile文件, 编译可以�
 在编译focus前，需要首先具有 Intel/GCC fortran compiler、OpenMPI以及HDF5，在conda中安装这些的方法此前已经有所提及
 
 ```shell
-conda install gfortran openmpi-mpicc openmpi-mpifort hdf5 netcdf
+conda install gfortran openmpi-mpicc openmpi-mpifort hdf5 netcdf4
 ```
 
 之后通过git 下载源码
