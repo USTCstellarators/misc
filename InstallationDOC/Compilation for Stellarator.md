@@ -366,7 +366,7 @@ make regcoil
 
 ```
 conda install compilers gfortran openmpi-mpifort openblas scalapack netcdf-fortran
-conda install cmake ninja f90wrap
+conda install cmake ninja f90wrap gsl fftw pkgconfig
 ```
 
 对于新版本(至少自2024/09/26之后）,编译方式
@@ -441,7 +441,7 @@ conda install gfortran
 conda install openmpi
 conda install liblapack
 conda install m4
-conda install fftw3
+conda install fftw
 conda install hdf5
 ```
 
@@ -520,4 +520,5 @@ xspech :       0.88 : myid=  0 : time=    0.01m =   0.00h =  0.00d ;
 
 ### 后处理
 SPEC的后处理工具分别基于`matlab`和`python`的，两者分别在`/path/to/SPEC/Utilities/matlabtools/`和`/path/to/SPEC/Utilities/pythontools/`文件夹下。
+
 
