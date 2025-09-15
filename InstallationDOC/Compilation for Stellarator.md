@@ -163,15 +163,15 @@ SIMSOPT的编译可以分为两个部分：SIMSOPT框架与VMEC等计算模块�
 
 4. 通过[hiddenSymmetries/VMEC2000 (github.com)](https://github.com/hiddensymmetries/vmec2000) 克隆VMEC2000代码库并进入目录。在编译VMEC2000前需要修改 `cmake_config_file.json` . 其模板文件可以在 `../VMEC2000/cmake/machines/` 找到。
 
-   修改该配置文件的主要作用是为cmake添加依赖库的路径，在上述配置后可能编译器无法找到诸如NETCDF、SCALAPACK等编译库的位置，以主动指定，例如
+   修改该配置文件的主要作用是为cmake添加依赖库的路径，在上述配置后可能编译器无法找到诸如NETCDF、SCALAPACK等编译库的位置，以主动指定，例如: *必须修改PATH*
 
    ```
    "-DCMAKE_C_COMPILER=gcc"，
    "-DCMAKE_CXX_COMPILER=g++",
    "-DCMAKE_Fortran_COMPILER=gfortran",
    "-DSCALAPACK_LIB_NAME=scalapack"，
-   "-DNETCDF_INC_PATH=/usr/include",
-   "-DNETCDF_LIB_PATH=/usr/lib/x86_64-linux-gnu"
+   "-DNETCDF_INC_PATH=/path/to/your/conda/env/include",
+   "-DNETCDF_LIB_PATH=/path/to/your/conda/env/lib"
    ```
 
 5. 进行编译
@@ -179,8 +179,8 @@ SIMSOPT的编译可以分为两个部分：SIMSOPT框架与VMEC等计算模块�
      ```
    pip install .
    ```
-或
-   ```
+     或
+    ```
    python setup.py build_ext
    python setup.py install
    ```
@@ -520,5 +520,6 @@ xspech :       0.88 : myid=  0 : time=    0.01m =   0.00h =  0.00d ;
 
 ### 后处理
 SPEC的后处理工具分别基于`matlab`和`python`的，两者分别在`/path/to/SPEC/Utilities/matlabtools/`和`/path/to/SPEC/Utilities/pythontools/`文件夹下。
+
 
 
