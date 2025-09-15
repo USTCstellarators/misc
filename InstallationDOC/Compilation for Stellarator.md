@@ -187,8 +187,11 @@ SIMSOPT的编译可以分为两个部分：SIMSOPT框架与VMEC等计算模块�
 
 ## 3. For Simsopt
 
-在完成上述之后，对于**Ubuntu**：
-
+在完成上述之后，对于**Ubuntu**：考虑实际使用时conda会导致很多奇怪的兼容问题，还是推荐
+```shell
+pip install -U simsopt
+```
+通过conda则是以下
 ```shell
 conda install -c hiddensymmetries simsopt
 ```
@@ -520,6 +523,7 @@ xspech :       0.88 : myid=  0 : time=    0.01m =   0.00h =  0.00d ;
 
 ### 后处理
 SPEC的后处理工具分别基于`matlab`和`python`的，两者分别在`/path/to/SPEC/Utilities/matlabtools/`和`/path/to/SPEC/Utilities/pythontools/`文件夹下。
+
 
 
 
