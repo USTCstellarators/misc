@@ -369,15 +369,22 @@ make regcoil
 
 ```
 conda install compilers gfortran openmpi-mpifort openblas scalapack netcdf-fortran
-conda install cmake ninja f90wrap gsl fftw pkgconfig
+conda install cmake ninja f90wrap gsl fftw pkgconfig scikit-build-core
 ```
 
-对于新版本(至少自2024/09/26之后）,编译方式
+对于新版本(自2025/10/03  ~~2024/09/26~~ 之后）,编译方式
 ```shell
 cd /path/to/SIMPLE
 make
 ```
-将生成包含库与可执行文件simple.x的build文件夹，并且产生了可以在python中使用的pysimple库
+
+将生成包含库与可执行文件simple.x的build文件夹，并且产生了为python wrapper提供依赖的链接库。如果需要pysimple，则执行
+
+```shell
+pip install -e .  --no-build-isolation
+```
+
+当在课题组小集群上执行时，请完全通过conda环境执行，无需使用任何load。
 
 对于老版本（大概2023/10），编译方式
 ```shell
@@ -523,6 +530,7 @@ xspech :       0.88 : myid=  0 : time=    0.01m =   0.00h =  0.00d ;
 
 ### 后处理
 SPEC的后处理工具分别基于`matlab`和`python`的，两者分别在`/path/to/SPEC/Utilities/matlabtools/`和`/path/to/SPEC/Utilities/pythontools/`文件夹下。
+
 
 
 
