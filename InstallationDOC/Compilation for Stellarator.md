@@ -135,9 +135,10 @@ SIMSOPT的编译可以分为两个部分：SIMSOPT框架与VMEC等计算模块�
 
 在已经创建并激活的conda环境中：
 
-1.  安装 compilers, netcdf-fortran, openmpi-mpicc, openmpi-mpifort, and openblas，同时输入
+1.  安装 compilers, netcdf-fortran, openmpi-mpicc, openmpi-mpifort, and openblas，同时输入:(config的作用是指定forge，否则存在找不到包的可能性)
 
    ```shell
+   conda config --add channels conda-forge 
    conda install compilers netcdf-fortran openmpi-mpicc openmpi-mpifort openblas scalapack
    ```
 
@@ -530,6 +531,7 @@ xspech :       0.88 : myid=  0 : time=    0.01m =   0.00h =  0.00d ;
 
 ### 后处理
 SPEC的后处理工具分别基于`matlab`和`python`的，两者分别在`/path/to/SPEC/Utilities/matlabtools/`和`/path/to/SPEC/Utilities/pythontools/`文件夹下。
+
 
 
 
