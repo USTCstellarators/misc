@@ -167,10 +167,10 @@ SIMSOPT的编译可以分为两个部分：SIMSOPT框架与VMEC等计算模块�
    修改该配置文件的主要作用是为cmake添加依赖库的路径，在上述配置后可能编译器无法找到诸如NETCDF、SCALAPACK等编译库的位置，以主动指定，例如: *必须修改PATH*
 
    ```
-   "-DCMAKE_C_COMPILER=gcc"，
+   "-DCMAKE_C_COMPILER=gcc",
    "-DCMAKE_CXX_COMPILER=g++",
    "-DCMAKE_Fortran_COMPILER=gfortran",
-   "-DSCALAPACK_LIB_NAME=scalapack"，
+   "-DSCALAPACK_LIB_NAME=scalapack",
    "-DNETCDF_INC_PATH=/path/to/your/conda/env/include",
    "-DNETCDF_LIB_PATH=/path/to/your/conda/env/lib"
    ```
