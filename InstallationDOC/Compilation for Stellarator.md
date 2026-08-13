@@ -131,6 +131,13 @@ SIMSOPT的编译可以分为两个部分：SIMSOPT框架与VMEC等计算模块�
 
 实际上，该思路来源于[Mac M1 M2 installation · hiddenSymmetries/simsopt Wiki (github.com)](https://github.com/hiddenSymmetries/simsopt/wiki/Mac-M1-M2-installation)，并在多台设备上验证。
 
+额外的，如果再SCnet上进行，建议最好：1. module purge 2. 设置私有的Miniforge3作为conda （唯一可用，因为集群GLIBC=2.17，只有miniforge3适配）
+
+ ```shell
+wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh
+bash Miniforge3-Linux-x86_64.sh
+```
+
 ## 2. For VMEC2000
 
 在已经创建并激活的conda环境中：
