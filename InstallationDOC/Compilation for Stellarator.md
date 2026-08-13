@@ -196,6 +196,10 @@ pip install -U simsopt
 ```shell
 conda install -c hiddensymmetries simsopt
 ```
+在SCnet上，还建议先使用一下命令对可能出问题的库单独安装后再进行
+```shell
+conda install -c conda-forge --override-channels pillow matplotlib scipy freetype libjpeg-turbo libpng
+```
 
 对于**MacOS**：
 
